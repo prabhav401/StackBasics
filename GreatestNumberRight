@@ -21,25 +21,21 @@ vi v;
 for (int i=n-1;i>=0;i--)
 {
     if (s.empty()) 
-    {
         v.pb(k);
-        s.push(arr[i]);
-    }
+        
     else if (s.size()>0 && s.top()>arr[i]) 
-    {
         v.pb(s.top());
-        s.push(arr[i]);
-    }
+
     else if (s.top()<arr[i] && s.size()>0)
     {
         while(s.size()>0 && s.top()<=arr[i])
             s.pop();
-        if (!s.empty()) {
+        if (!s.empty()) 
             v.pb(s.top());
-            s.push(arr[i]);
-            }
+            
         else v.pb(k);
     }
+    s.push(arr[i]);
 }
     reverse(v.begin(),v.end());
     for (auto it: v)
