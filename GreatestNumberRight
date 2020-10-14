@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+#define ll long long int 
+#define pb push_back
+#define M 1000000007
+#define endl "\n"
+#define forl(i, b, e) for (i = b; i < e; i++)
+#define fore(i, b, e) for (i = b; i <= e; i++)
+#define T double t;cin>>t; while(t--)
+#define SPEED ios::sync_with_stdio(false); cin.tie(0); cout.tie(0)
+#define vi vector <int>
+using namespace std;
+
+int main() {
+    SPEED;
+int n,k;
+cin>>n>>k;
+int arr[n];
+for (int i=0;i<n;i++) cin>>arr[i];
+stack<int> s;
+vi v;
+for (int i=n-1;i>=0;i--)
+{
+    if (s.empty()) 
+    {
+        v.pb(k);
+        s.push(arr[i]);
+    }
+    else if (s.size()>0 && s.top()>arr[i]) 
+    {
+        v.pb(s.top());
+        s.push(arr[i]);
+    }
+    else if (s.top()<arr[i] && s.size()>0)
+    {
+        while(s.size()>0 && s.top()<=arr[i])
+            s.pop();
+        if (!s.empty()) {
+            v.pb(s.top());
+            s.push(arr[i]);
+            }
+        else v.pb(k);
+    }
+}
+    reverse(v.begin(),v.end());
+    for (auto it: v)
+        cout<<it<<" ";
+
+	return 0;
+}
